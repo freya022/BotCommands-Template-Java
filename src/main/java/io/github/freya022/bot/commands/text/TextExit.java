@@ -1,11 +1,11 @@
 package io.github.freya022.bot.commands.text;
 
 import io.github.freya022.botcommands.api.commands.annotations.Command;
-import io.github.freya022.botcommands.api.commands.annotations.RequireOwner;
 import io.github.freya022.botcommands.api.commands.text.BaseCommandEvent;
 import io.github.freya022.botcommands.api.commands.text.TextCommand;
 import io.github.freya022.botcommands.api.commands.text.annotations.Hidden;
-import io.github.freya022.botcommands.api.commands.text.annotations.JDATextCommand;
+import io.github.freya022.botcommands.api.commands.text.annotations.JDATextCommandVariation;
+import io.github.freya022.botcommands.api.commands.text.annotations.RequireOwner;
 import io.github.freya022.botcommands.api.commands.text.annotations.TextOption;
 import io.github.freya022.botcommands.api.core.Logging;
 import org.jetbrains.annotations.Nullable;
@@ -17,7 +17,7 @@ public class TextExit extends TextCommand {
 
     @Hidden
     @RequireOwner
-    @JDATextCommand(path = {"exit"})
+    @JDATextCommandVariation(path = {"exit"})
     public void onTextExit(BaseCommandEvent event, @TextOption @Nullable String reason) {
         LOGGER.warn("Exiting for reason: {}", reason);
 

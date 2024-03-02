@@ -97,14 +97,14 @@ public class SlashBan extends ApplicationCommand {
                 })
                 .build();
 
-        componentsService.newEphemeralGroup(builder -> {
-            builder.timeout(1, TimeUnit.MINUTES, () -> {
-                event.getHook().editOriginal(localizationContext.localize("outputs.timeout"))
-                        .delay(Duration.ofSeconds(5))
-                        .flatMap(x -> event.getHook().deleteOriginal())
-                        .queue();
-            });
-        }, cancelButton, confirmButton);
+        componentsService.ephemeralGroup(cancelButton, confirmButton)
+                .timeout(Duration.ofMinutes(1), () -> {
+                    event.getHook().editOriginal(localizationContext.localize("outputs.timeout"))
+                            .delay(Duration.ofSeconds(5))
+                            .flatMap(x -> event.getHook().deleteOriginal())
+                            .queue();
+                })
+                .build();
 
         event.reply(localizationContext.localize("outputs.confirmationMessage", entry("userMention", target.getAsMention())))
                 .addActionRow(cancelButton, confirmButton)

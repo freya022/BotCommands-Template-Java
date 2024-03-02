@@ -35,7 +35,7 @@ public class Main {
 
         try {
             final Config config = Config.getInstance();
-            BotCommands.newBuilder(builder -> {
+            BotCommands.create(builder -> {
                 if (Environment.IS_DEV) {
                     builder.disableExceptionsInDMs(true);
                     builder.disableAutocompleteCache(true);
